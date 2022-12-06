@@ -26,4 +26,5 @@ https?:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php - reject
 
 
 [MITM]
+
 hostname = %APPEND% *api.weibo*, sdkapp.uve.weibo.com
