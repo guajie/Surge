@@ -8,13 +8,13 @@
 [URL Rewrite]
 # WeiboLite_微博国际版
 
-^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php\?a=hot_search_users - reject
+^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php\?a=hot_search_users - reject-TINYGIF
 
-^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/ad\/weibointl\? - reject
+^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/ad\/weibointl\? - reject-TINYGIF
 
-https?:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php - reject
+https?:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php - reject-TINYGIF
 
-^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*ads - reject
+^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*ads - reject-TINYGIF
 
 [Script]
 
