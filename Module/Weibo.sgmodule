@@ -23,9 +23,10 @@
 
 主页关注tab去广告 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses\/friends_timeline,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/guajie/Surge/main/Scripts/weibo_json.js
 
-http-response ^https?://(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua) requires-body=1,script-path= https://raw.githubusercontent.com/guajie/Surge/main/Scripts/wb_launch.js
+// 开屏广告
+http-response ^https://sdkapp\.uve\.weibo\.com/interface/sdk/sdkad\.php$ requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/yjqiang/surge_scripts/main/scripts/weibo/weibo_sdkad.js
 
 
 [MITM]
 
-hostname = %APPEND% *api.weibo*, api.weibo.cn, mapi.weibo.com, *.uve.weibo.com
+hostname = %APPEND% api.weibo.cn, mapi.weibo.com, sdkapp.uve.weibo.com
