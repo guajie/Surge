@@ -3,7 +3,6 @@
 #!system=ios
 
 [URL Rewrite]
-
 # WeiboLite_微博国际版
 
 ^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php\?a=hot_search_users - reject
