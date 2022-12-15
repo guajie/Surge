@@ -22,4 +22,4 @@ sdkad = type=http-response,pattern=^https?://(sdk|wb)app\.uve\.weibo\.com(/inter
 
 [MITM]
 
-hostname = %APPEND% *api.weibo*, *uve.weibo.com, new.vip.weibo.cn
+hostname = %APPEND% *api.weibo*, *uve.weibo.com
