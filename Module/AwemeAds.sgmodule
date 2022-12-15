@@ -1,13 +1,24 @@
-#!name=Block Aweme Advertising
-#!desc=By Choler | 抖音版本 <= 16.2.0
+#!name=Block Weibo
+#!desc= 微博轻享版App净化
 
 [URL Rewrite]
-^https?:\/\/api.*\.amemv\.com\/aweme\/v2\/feed\/ https://aweme.snssdk.com/aweme/v1/feed/ header
+# WeiboLite_微博国际版
+^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php\?a=hot_search_users - reject
+
+^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/ad\/weibointl\? - reject
+
+^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*ads - reject
+
 
 [Script]
-# > Aweme - *.amemv.com, *.snssdk.com
-douyin = type=http-response,pattern=^https?:\/\/aweme\.snssdk\.com\/aweme\/v\d\/feed\/,requires-body=1,script-path=https://raw.githubusercontent.com/Choler/Surge/master/Script/douyin.js
-# ------
+
+趋势tab去广告 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/cardlist,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/guajie/Surge/main/Scripts/weibo_json.js
+主页推荐热门tab去广告 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses\/unread_hot_timeline,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/guajie/Surge/main/Scripts/weibo_json.js
+主页关注tab去广告 = type=http-response,pattern=^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses\/friends_timeline,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/guajie/Surge/main/Scripts/weibo_json.js
+
+http-response ^https?://(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua) requires-body=1,script-path=https://raw.githubusercontent.com/guajie/Surge/main/Scripts/wb_launch.js
+
+http-response ^https?://m?api\.weibo\.c(n|om)/2/(statuses/(unread|extend|positives/get|(friends|video)(/|_)(mix)?timeline)|stories/(video_stream|home_list)|(groups|fangle)/timeline|profile/statuses|comments/build_comments|photo/recommend_list|service/picfeed|searchall|cardlist|page|!/(photos/pic_recommend_status|live/media_homelist)|video/tiny_stream_video_list|photo/info|remind/unread_count) requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/guajie/Surge/main/Scripts/wb_ad.js
 
 [MITM]
-hostname = %APPEND% *.amemv.com, *.snssdk.com
+hostname = %APPEND% api.weibo.cn, mapi.weibo.com, *.uve.weibo.com
