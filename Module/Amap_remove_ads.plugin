@@ -1,0 +1,46 @@
+#!name = 高德地图去广告
+#!desc = 过滤高德地图广告，需将高德地图卸载重装，方可去除广告。
+#!openUrl = 
+#!author = ddgksf2013
+#!homepage = https://gitlab.com/lodepuly/vpn_tool/-/tree/main/Tool/Loon/Plugin
+#!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
+
+[Rule]
+DOMAIN,amdc.m.taobao.com,REJECT
+
+[Rewrite]
+# > 高德地图_Tip请求
+^https?:\/\/.*\.amap\.com\/ws\/boss\/order_web\/\w{8}_information reject-200
+# > 高德地图_通用广告请求
+^https?:\/\/.*\.amap\.com\/ws\/asa\/ads_attribution reject
+# > 高德地图_搜索框scene
+^https?:\/\/.*\.amap\.com\/ws\/shield\/scene\/recommend reject-dict
+# > 高德地图_首页左上角gif
+^https?:\/\/.*\.amap\.com\/uploadimg\/\w+\.gif reject-img
+# > 高德地图_左下天气
+^https?:\/\/.*\.amap\.com\/ws\/valueadded\/weather reject-dict
+# > 高德地图_路线规划下方广告
+^https?:\/\/.*\.amap\.com\/ws\/faas\/amap-navigation\/card-service-route-plan\? reject-dict
+# > 高德地图_首页右中'2022出行报告'[已从根本上解决]
+# ^https?:\/\/img\.alicdn\.com\/imgextra\/i1\/O1CN01z5u64r1EdKvtRa19q_!!6000000000374-2-tps-120-120\.png reject
+
+[Script]
+# > 高德地图_首页右中广告
+http-response ^https?:\/\/.*\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable script-path = https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Amap/Amap_remove_ads.js, requires-body = true, tag= 首页右中广告, img-url = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
+# > 高德地图_附近页面
+http-response ^https?:\/\/.*\.amap\.com\/ws\/shield\/search\/nearbyrec_smart script-path = https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Amap/Amap_remove_ads.js, requires-body = true, tag= 附近页面, img-url = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
+# > 高德地图_打车页面处理
+http-response ^https?:\/\/.*\.amap\.com\/ws\/promotion-web\/resource script-path = https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Amap/Amap_remove_ads.js, requires-body = true, tag= 打车页面处理, img-url = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
+# > 高德地图_首页底部处理
+http-response ^https?:\/\/.*\.amap\.com\/ws\/faas\/amap-navigation\/main-page script-path = https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Amap/Amap_remove_ads.js, requires-body = true, tag= 首页底部处理, img-url = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
+# > 高德地图_开屏广告
+http-response ^https?:\/\/.*\.amap\.com\/ws\/valueadded\/alimama\/splash_screen script-path = https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Amap/Amap_remove_ads.js, requires-body = true, tag= 开屏广告, img-url = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
+# > 高德地图_首页顶部推广
+http-response ^https?:\/\/.*\.amap\.com\/ws\/msgbox\/pull script-path = https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Amap/Amap_remove_ads.js, requires-body = true, tag= 首页顶部推广, img-url = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
+# > 高德地图_我的页面
+http-response ^https?:\/\/.*\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaas script-path = https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Amap/Amap_remove_ads.js, requires-body = true, tag= 我的页面, img-url = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
+# > 高德地图_搜索框热词
+http-response ^https?:\/\/.*\.amap\.com\/ws\/shield\/search\/new_hotword script-path = https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Amap/Amap_remove_ads.js, requires-body = true, tag= 搜索框热词,  img-url = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
+
+[Mitm]
+hostname = *.amap.com
