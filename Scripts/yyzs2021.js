@@ -27,6 +27,22 @@ body = JSON.stringify(body);
 
 if (url.indexOf(path2) != -1){
 body = JSON.parse(body);
+
+if(!body.data){
+	body['data']={
+	isActive:true,
+	 memberDiscount:true,
+	 userProDiscountPromptType:1,
+	 remainExpiredDay:9999,
+	} 
+}
+if(!body.data.svipUserProInfo){
+	body.data['svipUserProInfo']={
+	activeType:1
+	}
+}
+
+
 body.data.isActive = true;
 body.data.memberDiscount = true;
 body.data.svipUserProInfo.activeType = 1;
